@@ -1,0 +1,44 @@
+.Home-img {
+    width: 100vw;
+}
+
+.Home-scroll {
+    height: 12vw;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.slider-item {
+    background-color: rgb(255, 145, 0);
+    width: 20vw;
+    height: 21vw;
+    margin-left: 3px;
+    margin-right: 3px;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+}
+
+.Home {
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
+
+.Home .slick-prev:before, .Home .slick-next:before {
+    color: black;
+}
+
+.Home a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.Home img {
+    width: 18vw;
+    height: 18vw;
+    margin-left: 1vw;
+    margin-bottom: 1vw;
+    border: black 2px solid;
+}
