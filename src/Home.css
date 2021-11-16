@@ -2,11 +2,25 @@
     width: 100vw;
 }
 
+.Home-slider {
+    background-color: gray;
+    height: 22vw;
+    border: 3px solid black;
+}
+
+.Home-main {
+    color: #e0ac00;
+}
+
 .Home-scroll {
-    height: 12vw;
+    height: 30vw;
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
+}
+
+.slider-item:hover{
+    border: 2px solid yellow;
 }
 
 .slider-item {
@@ -20,13 +34,8 @@
     justify-content: center;
 }
 
-.Home {
-    margin-left: 10vw;
-    margin-right: 10vw;
-}
-
-.Home .slick-prev:before, .Home .slick-next:before {
-    color: black;
+.Home .slick-slider .slick-track .slick-slide {
+    width: 0;
 }
 
 .Home a {
@@ -41,4 +50,100 @@
     margin-left: 1vw;
     margin-bottom: 1vw;
     border: black 2px solid;
+}
+
+@media (max-width: 800px){
+    .slider-item {
+        background-color: rgb(255, 145, 0);
+        width: 15vw;
+        height: 17vw;
+        margin-left: 3px;
+        margin-right: 3px;
+        display: inline-block;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .slider-item:hover{
+        border: 2px solid yellow;
+    }
+
+    .Home img {
+        width: 13vw;
+        height: 13vw;
+        margin-left: 1vw;
+        margin-bottom: 1vw;
+        border: black 2px solid;
+    }
+}
+
+@media (min-width: 1000px){
+    .slider-item {
+        background-color: rgb(255, 145, 0);
+        width: 15vw;
+        height: 16vw;
+        margin-left: 3px;
+        margin-right: 3px;
+        display: inline-block;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .slider-item:hover{
+        border: 2px solid yellow;
+    }
+
+    .Home img {
+        width: 13vw;
+        height: 13vw;
+        margin-left: 1vw;
+        margin-bottom: 1vw;
+        border: black 2px solid;
+    }
+}
+
+
+
+.Home {
+    margin-left: 10vw;
+    margin-right: 10vw;
+    background-color: rgb(0, 70, 150);
+    height: 60vh;
+}
+
+.Home .slick-prev:before, .Home .slick-next:before {
+    color: black;
+    font-size: 2rem;
+}
+
+.Home .slick-prev, .Home .slick-next{
+    height: 22vw;
+    background-color: rgba(128, 128, 128, 0.781);
+    width: 5vw;
+}
+
+.Home .slick-prev:focus, .Home .slick-next:focus{
+    height: 22vw;
+    background-color: rgba(128, 128, 128, 0.781);
+    width: 5vw;
+}
+
+.Home .slick-prev:hover, .Home .slick-next:hover{
+    height: 23vw;
+    background-color: rgba(128, 128, 128, 0.781);
+    width: 5vw;
+}
+
+.Home .slick-prev {
+    left: -5vw;
+}
+
+.Home .slick-next {
+    right: -5vw;
+}
+
+.Home .Home-slider .slick-list {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }

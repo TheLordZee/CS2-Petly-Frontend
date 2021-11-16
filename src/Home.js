@@ -39,12 +39,15 @@ const Home = () => {
       ]
     };
     return(
-        <div>
+        <div className="Home-main">
             <img className="Home-img" src={mainImg}/>
             <div className="Home">
-            <h1>Petly</h1>
-            <h2>Pets For Anyone</h2>
-            <div>
+                <h1>Petly</h1>
+                <h2>Pets For Anyone</h2>
+                
+
+            <h3 className="mt-5">Pet Types</h3>
+            <div className="pb-3 Home-slider">
               <Slider {...settings} className="Home-slider">
                 <a href="/pets/dog">
                     <div className="slider-item">
@@ -83,10 +86,16 @@ const Home = () => {
                     </div>
                 </a>
                 <a href="/pets/scales-fins-other">
-                    <div className="slider-item">Scales, Fins & Other</div>
+                    <div className="slider-item">
+                        Scales, Fins & Other
+                        <img src="https://reptilesmagazine.com/wp-content/uploads/data-import/6fd47469/leopard-gecko-shutterstock603461384.jpg"/>
+                    </div>
                 </a>
                 <a href="/pets/barnyard">
-                    <div className="slider-item">Barnyard</div>
+                    <div className="slider-item">
+                        Barnyard
+                        <img src="https://cdn-a.william-reed.com/var/wrbm_gb_food_pharma/storage/images/publications/feed/feednavigator.com/news/r-d/how-can-the-prenatal-phase-influence-the-lifelong-performance-of-a-pig/8769254-1-eng-GB/How-can-the-prenatal-phase-influence-the-lifelong-performance-of-a-pig.jpg"/>
+                    </div>
                 </a>
               </Slider>
             </div>

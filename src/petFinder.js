@@ -27,7 +27,6 @@ const createQueryParams = (filter) =>{
  */
 
 class PetFinderApi {
-    static token = localStorage.getItem("pfToken");
 
     static async getToken(){
         const res = await axios.post(PF_BASE_URL + "oauth2/token", {
@@ -37,18 +36,15 @@ class PetFinderApi {
         })
         
         const token = res.data.access_token;
-        localStorage.setItem("pfToken", token)
         return token;
     }
 
     static async request(endpoint, data = {}, method = "get") {
         console.debug("API Call:", endpoint, data, method);
+        const token = await PetFinderApi.getToken();
     
-        if(!PetFinderApi.token){
-            await PetFinderApi.getToken();
-        }
         const url = `${PF_BASE_URL}/${endpoint}`;
-        const headers = { Authorization: `Bearer ${PetFinderApi.token}` };
+        const headers = { Authorization: `Bearer ${token}` };
         const params = (method === "get") ? data : {};
         try {
           return (await axios({ url, method, data, params, headers })).data;
@@ -71,6 +67,23 @@ class PetFinderApi {
     static async getAnimal(id){
         const res = await PetFinderApi.request(`animals/${id}`);
         return res.animal;
+    }
+
+    static async getOrganizations(page=1, state, query){
+        let search = `organizations?page=${page}`
+        if(state){
+            search += `&state=${state}`
+        }
+        if(query){
+            search += `&query=${query.replaceAll(" ", "+")}`
+        }
+        const res = await PetFinderApi.request(search);
+        return res.organizations;
+    }
+
+    static async getOrganization(id){
+        const res = await PetFinderApi.request(`organizations/${id}`);
+        return res.organization;
     }
 }
 
