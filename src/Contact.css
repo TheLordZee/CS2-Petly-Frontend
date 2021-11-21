@@ -1,0 +1,9 @@
+.Contact p {
+    margin: 0%;
+    font-size: .8rem;
+}
+
+.Contact p span{
+    font-size: .8rem;
+    font-weight: bold;
+}

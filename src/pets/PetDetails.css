@@ -1,0 +1,76 @@
+.PetDetails-imgs{
+    height: 40vw;
+    max-height: 500px;
+}
+
+.PetDetails-carousel {
+    background-color: rgba(0, 0, 0, 0.774);
+    width: 100vw;
+    max-height: 500px;
+}
+
+.PetDetails{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    padding: 2vw;
+    border-top: 2px solid black;
+    flex-direction: column;
+    align-items: center;
+}
+
+.PetDetails-title {
+    width: 50vw;
+    height: 20vw;
+    border-radius: 30px;
+    max-height: 200px;
+}
+
+@media (max-width: 600px) {
+    .PetDetails-title {
+        width: 70vw;
+        height: 20vw;
+        border-radius: 30px;
+        max-height: 200px;
+    }    
+}
+
+.PetDetails .PetDetails-row {
+    margin-top: 4vw;
+    padding: 2vw;
+    padding-left: 8vw;
+    padding-right: 8vw;
+    width: 100vw;
+    border-top: 2px solid black;
+    background-color: rgb(180, 180, 180);
+}
+
+.PetDetails-row .PetDetails-column{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: white;
+    text-align: start;
+}
+
+.PetDetails-attribute {
+    text-decoration: underline black;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.PetDetails-contact {
+    display: flex;
+    align-items: center;
+    margin-top: 2vw;
+}
+
+@media (max-width: 1000px) {
+    .PetDetails .OrgCard-img{
+        display: block;
+    }
+    .PetDetails .Org-card .Org-body {
+        font-size: 1.5vw;
+        width: 20vw;
+    }
+}

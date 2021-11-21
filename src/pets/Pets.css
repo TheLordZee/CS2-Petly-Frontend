@@ -1,0 +1,8 @@
+.Pets {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 2vw;
+    background-color: #e0a400;
+}

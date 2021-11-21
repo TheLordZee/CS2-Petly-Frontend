@@ -4,21 +4,7 @@ import {
     API_SECRET,
     PF_BASE_URL
 } from "./config";
-
-const parameters = [
-    "type", "breed", "size", "gender", "age", "color", "coat", "status", "name", "organization", "good_with_children", "good_with_dogs", "good_with_cats", "house_trained", "declawed", "special_needs", "location"
-]
-
-const createQueryParams = (filter) =>{
-    let res = ""
-    for(let key of Object.keys(filter)){
-        if(parameters.includes(key)){
-            res += `$${key}=${filter[key]}`   
-        }
-    }
-
-    return res;
-}
+import {createQueryParams} from "./helpers"
 
 /** External PetFinder API class
  * 
@@ -43,22 +29,21 @@ class PetFinderApi {
         console.debug("API Call:", endpoint, data, method);
         const token = await PetFinderApi.getToken();
     
-        const url = `${PF_BASE_URL}/${endpoint}`;
+        const url = `${PF_BASE_URL}${endpoint}`;
         const headers = { Authorization: `Bearer ${token}` };
         const params = (method === "get") ? data : {};
         try {
           return (await axios({ url, method, data, params, headers })).data;
         } catch (err) {
           console.error("API Error:", err);
-          let message = err.response.data.error.message;
-          throw Array.isArray(message) ? message : [message];
+          console.log(err)
         }
     }
 
-    static async getAnimals(filter={}, page=1){
-        const params = createQueryParams(filter)
-        const res = await PetFinderApi.request(`animals?page=${page}${params}`)
-        
+    static async getAnimals(filter={}){
+        const params = createQueryParams(filter, "org")
+        console.log(params)
+        const res = await PetFinderApi.request(`animals?${params}`)
         const animals = [...res.animals]
         console.log(animals)
         return animals;
@@ -84,6 +69,11 @@ class PetFinderApi {
     static async getOrganization(id){
         const res = await PetFinderApi.request(`organizations/${id}`);
         return res.organization;
+    }
+
+    static async getBreeds(type){
+        const res = await PetFinderApi.request(`types/${type}/breeds`)
+        return res.breeds;
     }
 }
 

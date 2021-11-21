@@ -1,58 +1,72 @@
 import { Card, CardBody, CardTitle, CardText } from "reactstrap";
 import Map from "./Map"
-
+import Contact from "../Contact";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import PetFinderApi from "../petFinder";
+import { getLatLng } from "../helpers";
 
 const OrgDetails = ({org}) => {
-    const {id, name, address, photos, mission_statement, adoption, email, hours, phone, social_media, website} = org;
-    const latLng = JSON.parse(localStorage.getItem('latLng'))
+    const [currOrg, setCurrOrg] = useState({});
+    const [latLng, setLatLng] = useState({});
+    let {orgId} = useParams();
+    useEffect(() => {
+        async function setUp() {
+            const o = await PetFinderApi.getOrganization(id)
+            setCurrOrg(o)
+        }
+        if(!currOrg.name){
+            setUp()
+        }
+    }, [])
+    console.log(currOrg)
+    const {id, name, address, photos, mission_statement, adoption, email, hours, phone, social_media, website} = org || currOrg;
+    if(address && !latLng.lat){
+        async function getLtLng(){
+            const ll = await getLatLng(address)
+            setLatLng(ll)
+        }
+        getLtLng()
+    }
+    
     return (
         <>
-        <Card>
+        <Card className="OrgDetails-card">
             <h2>{name}</h2>
-            <img src={(photos) ? (photos[0] ? photos[0].full : "") : ""}/>
+            <img 
+                className="OrgDetails-img" src={(photos) ? (photos[0] ? photos[0].full : "") : ""}
+            />
             {(address) ? <h3>{address.city}, {address.state}</h3> : ""}
-            {(website) ? <a className="btn btn-primary" href={website}>Visit Website</a> : ""}
-            <a className="btn btn-danger" href={`/pets/1?organization=${id}`}>See Pets</a>
+            {(website) ? <a 
+                        className="btn btn-primary" 
+                        href={website}>
+                            Visit Website
+                        </a> 
+            : ""}
+            <a 
+                className="btn btn-danger" 
+                href={`/pets?page=1&organization=${id}`}>
+                    See Pets
+            </a>
             {(mission_statement) ? <>
                 <h4>Mission:</h4>
                 <CardBody className="fw-bold">
                     {mission_statement}
                 </CardBody></> 
             : ""}
-            {(adoption.policy) ? <>
+            {(adoption) ? <>
                 <h5>Policy:</h5>
                 <p>{adoption.policy}</p>
                 {(adoption.url) ? <p>
                     MORE INFO AT: <a href={adoption.url}>{adoption.url}</a>
                 </p>: ""}
             </> : ""}
-            <div className="Org-contact">
-                <h5>Contact Info:</h5>
-                <p><span>Address:</span> {address.address1} {address.city} {address.state} {address.postcode}</p>
-                {(email) ? <p><span>Email:</span> {email}</p> : ""}
-                {(phone) ? <p><span>Phone:</span> {phone}</p> : ""}
-                {(social_media.facebook) ? <p>
-                    <span>Facebook:</span> 
-                    <a href="">{social_media.facebook}</a>
-                </p> : ""}
-                {(social_media.instagram) ? <p>
-                    <span>Instagram:</span> 
-                    <a href="">{social_media.instagram}</a>
-                </p> : ""}
-                {(social_media.pinterest) ? <p>
-                    <span>Pinterest:</span> 
-                    <a href="">{social_media.pinterest}</a>
-                </p> : ""}
-                {(social_media.twitter) ? <p>
-                    <span>Twitter:</span> 
-                    <a href="">{social_media.twitter}</a>
-                </p> : ""}
-                {(social_media.youtube) ? <p>
-                    <span>YouTube:</span> 
-                    <a href="">{social_media.youtube}</a>
-                </p> : ""}
-            </div>
-            {(address) ? <Map latLng={latLng}/> : ""}
+            
+            
+            {(address) ?<> 
+                <Contact className="Org-contact" contactInfo={{address, email, phone, social_media}}/>
+                <Map latLng={latLng}/> 
+            </>: ""}
             
         </Card>
         </>

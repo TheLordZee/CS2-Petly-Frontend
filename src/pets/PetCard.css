@@ -1,0 +1,14 @@
+.PetCard {
+    width: 30vw;
+    max-width: 250px;
+    max-height: 600px;
+    margin-left: 2vw;
+    color: black;
+    text-decoration: none;
+}
+
+@media (max-width: 500px) {
+    .PetCard{
+        width: 60vw;
+    }
+}

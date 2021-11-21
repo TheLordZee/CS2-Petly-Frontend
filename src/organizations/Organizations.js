@@ -65,7 +65,6 @@ const Organizations = () => {
     }
 
     const handleHeaderClick = (e) => {
-        
         history.push(`/organizations/1?state=${e.target.value}`)
         setCurrState({
             name: e.target.innerText,
@@ -128,8 +127,8 @@ const Organizations = () => {
             <span className="mx-4 fw-bold">{page}</span>
 
             {(organizations.length === 20) ? (state) ?
-            <a className="btn fs-3 fw-bold" href={`/organizations/${page+1}?state=${state}`}>{">"}</a> 
-            : <a className="btn fw-bold fs-3" href={`/organizations/${page+1}`}>{">"}</a> 
+            <a className="btn fs-3 fw-bold" href={`/organizations/page/${page+1}?state=${state}`}>{">"}</a> 
+            : <a className="btn fw-bold fs-3" href={`/organizations/page/${page+1}`}>{">"}</a> 
             : ""}
         </>
     )

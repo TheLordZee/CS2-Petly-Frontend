@@ -25,3 +25,12 @@
 .Orgs-container {
     height: 80vh;
 }
+
+.OrgDetails-img {
+    width: 30vw;
+    max-width: 600px;
+}
+
+.OrgDetails-card {
+    align-items: center;
+}

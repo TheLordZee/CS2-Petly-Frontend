@@ -7,11 +7,11 @@ import "./OrgsHeader.css"
 
 const OrgsHeader = ({currState, handleClick, setCurrState, setQuery, query, handleChange}) => {
     return(
-        <Navbar expand="md" className="sticky-top">
+        <Navbar expand="md" className="sticky-top p-2">
             
           <Nav className="" navbar>
                 <NavItem className="nav-item me-4">
-                    <NavLink to="/organizations/1" onClick={() => {
+                    <NavLink to="/organizations/page/1" onClick={() => {
                       setCurrState({})
                       setQuery(null)
                     }}>Organizations</NavLink>
